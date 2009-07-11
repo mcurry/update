@@ -68,6 +68,7 @@ class UpdateShell extends Shell {
 			chdir($path);
 
 			if ($isGit) {
+				unset($result);
 				exec('git pull origin master', $result, $code);
 
 				if ($code == 0) {
@@ -78,6 +79,7 @@ class UpdateShell extends Shell {
 			}
 
 			if ($isSvn) {
+				unset($result);
 				exec('svn update', $result, $code);
 
 				if ($code == 0) {
