@@ -25,10 +25,11 @@ class UpdateShell extends Shell {
     } else {
 			$this->out('a: all');
 			foreach($plugins as $i => $plugin) {
-				$this->out($i . ': ' . $plugin);
+				$this->out($i + 1 . ': ' . $plugin);
 			}
 			
       $toUpdate = $this->in('Select Plugin ("q" to quit, "?" for help):');
+			$toUpdate --;
 			
 			switch(strtolower($toUpdate)) {
 				case 'q':
@@ -48,6 +49,7 @@ class UpdateShell extends Shell {
 		
 		foreach($toUpdate as $plugin) {
 			$this->out('Updating ' . $plugin . '...');
+			
 			$path = APP . 'plugins' . DS . Inflector::underscore($plugin);
 			if(!$this->Folder->cd($path)) {
 				$this->out('ERROR: plugin not found at ' . $path);
@@ -74,7 +76,7 @@ class UpdateShell extends Shell {
 					$this->out($result);
 				}
 				
-				$this->out();
+				$this->out('');
 			}
 			
 			if($isSvn) {
@@ -86,7 +88,7 @@ class UpdateShell extends Shell {
 					$this->out($result);
 				}
 				
-				$this->out();
+				$this->out('');
 			}			
 		}
 		
